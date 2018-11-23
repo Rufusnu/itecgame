@@ -21,7 +21,7 @@ const C_NORMAL = Vector2(0, -1)
 const C_COMBO_TIMEOUT = 0.2
 const C_MAX_COMBO_CHAIN = 2
 
-const C_DASH_CD = 1.5
+const C_DASH_CD = 1
 const C_MAX_JUMPS = 2
 
 
@@ -116,11 +116,9 @@ func _physics_process(delta):
 	
 	# animations
 	# bad code incoming
+	print(g_dash_velocity.x)
 	if on_floor:
-		if g_dash_velocity.x != 0:
-			if $Sprite/AnimationPlayer.current_animation != "dash":
-				$Sprite/AnimationPlayer.play("dash")
-		elif g_velocity.x != 0:
+		if abs(g_velocity.x) > 10:
 			if $Sprite/AnimationPlayer.current_animation != "walk":
 				$Sprite/AnimationPlayer.play("walk")
 		else:
@@ -133,6 +131,9 @@ func _physics_process(delta):
 			elif $Sprite/AnimationPlayer.current_animation != "fall":
 				$Sprite/AnimationPlayer.play("fall")
 	
+	if abs(g_dash_velocity.x) > 80:
+			if $Sprite/AnimationPlayer.current_animation != "dash":
+				$Sprite/AnimationPlayer.play("dash")
 	
 	
 	# special
