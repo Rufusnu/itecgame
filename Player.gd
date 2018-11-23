@@ -183,9 +183,7 @@ func _physics_process(delta):
 	
 	
 func dash(speed):
-	set_collision_mask_bit(4, 0)
-	$ITimer.start()
-	
+	invincible(0.25)
 	g_dash_velocity.x += speed
 	g_velocity.y -= 100
 	
@@ -194,10 +192,18 @@ func take_damage(damage):
 	g_health -= damage
 	if damage < 0:
 		die()
+	invincible(0.7)
+
+func knock(velo):
+	g_velocity += velo
+
+func invincible(time):
+	set_collision_mask_bit(4, 0)
+	$ITimer.set_wait_time(time)
+	$ITimer.start()
 
 func die():
 	print("askglasjfa")
-
 
 func _on_ITimer_timeout():
 	set_collision_mask_bit(4, 1)
