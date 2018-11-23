@@ -167,13 +167,27 @@ func _physics_process(delta):
 	
 	
 	
+	
+	# interact
+	var interact = Input.is_action_just_pressed("ui_interact")
+	
+	if interact:
+		var bodies = $InteractArea.get_overlapping_areas()
+		for body in bodies:
+			if body.get_parent().has_method("interact"):
+				body.get_parent().interact()
+				break
+	
+	
+	
+	
+	
 func dash(speed):
 	set_collision_mask_bit(4, 0)
 	$ITimer.start()
 	
 	g_dash_velocity.x += speed
 	g_velocity.y -= 100
-	# anim stuff
 	
 
 func take_damage(damage):
@@ -187,4 +201,3 @@ func die():
 
 func _on_ITimer_timeout():
 	set_collision_mask_bit(4, 1)
-	print("poing")
