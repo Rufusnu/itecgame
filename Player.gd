@@ -16,6 +16,8 @@ export (bool) var E_HAS_DOUBLE_JUMP
 
 export (int) var E_HEALTH
 
+export (PackedScene) var E_JUMP_ANIM
+
 # consts go here
 
 const C_NORMAL = Vector2(0, -1)
@@ -90,6 +92,15 @@ func _physics_process(delta):
 	if move_jump and g_jump_number > 0:
 		g_velocity.y = max(g_velocity.y - E_JUMP_SPEED, -E_MAX_JUMP_SPEED)
 		g_jump_number -= 1
+		var jump_particles = E_JUMP_ANIM.instance()
+		get_parent().add_child(jump_particles)
+		jump_particles.position = position
+		if on_floor:
+			jump_particles.position.y -= 16
+			jump_particles.play("ground_jump")
+		else:
+			jump_particles.position.y += 64
+			jump_particles.play("air_jump")
 		# anim stuff
 		
 	# too much gravity
