@@ -21,7 +21,7 @@ const C_NORMAL = Vector2(0, -1)
 const C_COMBO_TIMEOUT = 0.2
 const C_MAX_COMBO_CHAIN = 2
 
-const C_DASH_CD = 2
+const C_DASH_CD = 1.5
 const C_MAX_JUMPS = 2
 
 
@@ -63,10 +63,12 @@ func _physics_process(delta):
 	
 	if move_right:
 		g_velocity.x = min(g_velocity.x + E_ACCEL, E_MAX_WALK_SPEED)
+		g_facing_right = true
 		# anim stuff
 	
 	if move_left:
 		g_velocity.x = max(g_velocity.x - E_ACCEL, -E_MAX_WALK_SPEED)
+		g_facing_right = false
 		# anim stuff
 	# special
 	## double jump
@@ -87,15 +89,44 @@ func _physics_process(delta):
 	else:
 		g_velocity.y = min(g_velocity.y + E_GRAVITY, E_MAX_FALL_SPEED)
 	
+	if on_ceiling:
+		g_velocity.y = 0
+	
+	
 	if !move_right and !move_left:
 		if on_floor:
 			g_velocity.x = lerp(g_velocity.x, 0, 0.2)
 		else:
 			g_velocity.x = lerp(g_velocity.x, 0, 0.03)
-	# probably more anim stuff
 	
 	move_and_slide(g_velocity + g_dash_velocity, C_NORMAL)
 	# end of movement
+	
+	
+	# probably more anim stuff
+	
+	$Sprite.flip_h = !g_facing_right
+	
+	# animations
+	# bad code incoming
+	if on_floor:
+		if g_dash_velocity.x != 0:
+			if $Sprite/AnimationPlayer.current_animation != "dash":
+				$Sprite/AnimationPlayer.play("dash")
+		elif g_velocity.x != 0:
+			if $Sprite/AnimationPlayer.current_animation != "walk":
+				$Sprite/AnimationPlayer.play("walk")
+		else:
+			if $Sprite/AnimationPlayer.current_animation != "idle":
+				$Sprite/AnimationPlayer.play("idle")
+	else:
+		if g_velocity.y < 0:
+			if $Sprite/AnimationPlayer.current_animation != "jump":
+				$Sprite/AnimationPlayer.play("jump")
+			elif $Sprite/AnimationPlayer.current_animation != "fall":
+				$Sprite/AnimationPlayer.play("fall")
+	
+	
 	
 	# special
 	g_combo_timer += delta
@@ -111,7 +142,9 @@ func _physics_process(delta):
 				dash(E_DASH_SPEED, true)
 			elif g_key_combo[0] == "Left" or g_key_combo[0] == "A":
 				dash(-E_DASH_SPEED, false)
+			g_dash_timer = 0
 	g_dash_velocity.x = lerp(g_dash_velocity.x, 0, 0.15)
+	
 	
 	
 	
