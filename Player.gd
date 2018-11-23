@@ -81,7 +81,6 @@ func _physics_process(delta):
 		g_jump_number -= 1
 		# anim stuff
 		
-	print(g_velocity.y)
 	# too much gravity
 	if on_floor:
 		g_velocity.y = min(g_velocity.y + E_ACCEL, 15)
@@ -118,4 +117,5 @@ func _physics_process(delta):
 	
 func dash(speed, dir_right):
 	g_dash_velocity.x += speed
+	# anim stuff
 	
