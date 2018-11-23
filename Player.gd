@@ -36,7 +36,7 @@ func _physics_process(delta):
 		# anim stuff
 	
 	if move_left:
-		g_velocity.x = max(g_velocity.x - E_ACCEL, -E_MAX_FALL_SPEED)
+		g_velocity.x = max(g_velocity.x - E_ACCEL, -E_MAX_WALK_SPEED)
 		# anim stuff
 	
 	if move_jump and on_floor:
@@ -50,8 +50,13 @@ func _physics_process(delta):
 	else:
 		g_velocity.y = min(g_velocity.y + E_GRAVITY, E_MAX_FALL_SPEED)
 	
+	if !move_right and !move_left:
+		if on_floor:
+			g_velocity.x = lerp(g_velocity.x, 0, 0.2)
+		else:
+			g_velocity.x = lerp(g_velocity.x, 0, 0.01)
 	# probably more anim stuff
-	
+	print(g_velocity.x)
 	
 	move_and_slide(g_velocity, C_NORMAL)
 	# end of movement
