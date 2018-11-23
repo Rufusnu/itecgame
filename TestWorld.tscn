@@ -31,5 +31,7 @@ __meta__ = {
 [node name="Player" parent="." index="1" instance=ExtResource( 2 )]
 
 position = Vector2( 512, 416 )
+E_HAS_DOUBLE_JUMP = true
+
 
 
