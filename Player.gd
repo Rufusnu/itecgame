@@ -9,6 +9,8 @@ export (int) var E_MAX_FALL_SPEED
 export (int) var E_JUMP_SPEED
 export (int) var E_GRAVITY
 
+export (int) var E_DASH_SPEED
+
 # consts go here
 
 const C_NORMAL = Vector2(0, -1)
@@ -19,21 +21,21 @@ const C_MAX_COMBO_CHAIN = 2
 
 # globals go here
 var g_velocity = Vector2()
+var g_dash_velocity = Vector2()
+
 var g_facing_right = true
 
 var g_key_combo = []
 var g_combo_timer = 0
 
 func _input(event):
+	# makes a buffer with the last C_MAX_COMBO_CHAIN keys pressed
 	if event is InputEventKey and event.pressed and !event.echo: 
-		if g_combo_timer > C_COMBO_TIMEOUT:                  
-			g_key_combo = []
 		
-		g_key_combo.append(event.scancode)                     
+		g_key_combo.append(event.as_text())                     
 		if g_key_combo.size() > C_MAX_COMBO_CHAIN:               
 			g_key_combo.pop_front()
-		
-		print(g_key_combo)                                     
+		                                 
 		g_combo_timer = 0                                   
 
 func _physics_process(delta):
@@ -72,17 +74,29 @@ func _physics_process(delta):
 		if on_floor:
 			g_velocity.x = lerp(g_velocity.x, 0, 0.2)
 		else:
-			g_velocity.x = lerp(g_velocity.x, 0, 0.01)
+			g_velocity.x = lerp(g_velocity.x, 0, 0.03)
 	# probably more anim stuff
 	
-	move_and_slide(g_velocity, C_NORMAL)
+	move_and_slide(g_velocity + g_dash_velocity, C_NORMAL)
 	# end of movement
 	
 	# special
+	g_combo_timer += delta
+	if g_combo_timer > C_COMBO_TIMEOUT:                  
+			g_key_combo = []
+	
 	## dash
+	if g_key_combo.size() == 2:
+		if g_key_combo[0] == g_key_combo[1]:
+			if g_key_combo[0] == "Right" or g_key_combo[0] == "D":
+				dash(E_DASH_SPEED, true)
+			elif g_key_combo[0] == "Left" or g_key_combo[0] == "A":
+				dash(-E_DASH_SPEED, false)
+	g_dash_velocity.x = lerp(g_dash_velocity.x, 0, 0.15)
+	
 	
 	
 	
 func dash(speed, dir_right):
-	pass
+	g_dash_velocity.x += speed
 	
