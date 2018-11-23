@@ -6,6 +6,7 @@ export (int) var E_MAX_WALK_SPEED
 export (int) var E_ACCEL
 
 export (int) var E_MAX_FALL_SPEED
+export (int) var E_MAX_JUMP_SPEED
 export (int) var E_JUMP_SPEED
 export (int) var E_GRAVITY
 
@@ -67,13 +68,20 @@ func _physics_process(delta):
 	if move_left:
 		g_velocity.x = max(g_velocity.x - E_ACCEL, -E_MAX_WALK_SPEED)
 		# anim stuff
+	# special
+	## double jump
+	if on_floor:
+		if E_HAS_DOUBLE_JUMP:
+			g_jump_number = C_MAX_JUMPS
+		else:
+			g_jump_number = 1
 	
 	if move_jump and g_jump_number > 0:
-		g_velocity.y -= E_JUMP_SPEED
+		g_velocity.y = max(g_velocity.y - E_JUMP_SPEED, -E_MAX_JUMP_SPEED)
 		g_jump_number -= 1
 		# anim stuff
 		
-	
+	print(g_velocity.y)
 	# too much gravity
 	if on_floor:
 		g_velocity.y = min(g_velocity.y + E_ACCEL, 15)
@@ -106,12 +114,6 @@ func _physics_process(delta):
 				dash(-E_DASH_SPEED, false)
 	g_dash_velocity.x = lerp(g_dash_velocity.x, 0, 0.15)
 	
-	## double jump
-	if on_floor:
-		if E_HAS_DOUBLE_JUMP:
-			g_jump_number = C_MAX_JUMPS
-		else:
-			g_jump_number = 1
 	
 	
 func dash(speed, dir_right):
