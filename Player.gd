@@ -14,6 +14,8 @@ export (int) var E_DASH_SPEED
 export (bool) var E_HAS_DASH
 export (bool) var E_HAS_DOUBLE_JUMP
 
+export (int) var E_HEALTH
+
 # consts go here
 
 const C_NORMAL = Vector2(0, -1)
@@ -37,6 +39,8 @@ var g_combo_timer = 0
 
 var g_dash_timer = 2
 var g_jump_number = 0
+
+var g_health = E_HEALTH
 
 # moon walk
 
@@ -116,9 +120,11 @@ func _physics_process(delta):
 	
 	# animations
 	# bad code incoming
-	print(g_dash_velocity.x)
 	if on_floor:
-		if abs(g_velocity.x) > 10:
+		if abs(g_dash_velocity.x) > 80:
+			if $Sprite/AnimationPlayer.current_animation != "dash":
+				$Sprite/AnimationPlayer.play("dash")
+		elif abs(g_velocity.x) > 10:
 			if $Sprite/AnimationPlayer.current_animation != "walk":
 				$Sprite/AnimationPlayer.play("walk")
 		else:
@@ -155,12 +161,30 @@ func _physics_process(delta):
 			elif g_key_combo[0] == "Left" or g_key_combo[0] == "A":
 				dash(-E_DASH_SPEED)
 			g_dash_timer = 0
+	
 	g_dash_velocity.x = lerp(g_dash_velocity.x, 0, 0.15)
 	
 	
 	
 	
 func dash(speed):
+	set_collision_mask_bit(4, 0)
+	$ITimer.start()
+	
 	g_dash_velocity.x += speed
+	g_velocity.y -= 100
 	# anim stuff
 	
+
+func take_damage(damage):
+	g_health -= damage
+	if damage < 0:
+		die()
+
+func die():
+	print("askglasjfa")
+
+
+func _on_ITimer_timeout():
+	set_collision_mask_bit(4, 1)
+	print("poing")
