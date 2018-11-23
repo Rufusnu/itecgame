@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://Animations/player/panda_anim01.png" type="Texture" id=2]
@@ -28,6 +28,11 @@ tracks/0/keys = {
 "update": 1,
 "values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 ]
 }
+
+[sub_resource type="RectangleShape2D" id=3]
+
+custom_solver_bias = 0.0
+extents = Vector2( 64, 50 )
 
 [node name="Player" type="KinematicBody2D"]
 
@@ -109,6 +114,25 @@ process_mode = 1
 wait_time = 0.25
 one_shot = true
 autostart = false
+
+[node name="InteractArea" type="Area2D" parent="." index="4"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision_layer = 32
+collision_mask = 64
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Audio Bus", "Collision" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractArea" index="0"]
+
+position = Vector2( 0, -15 )
+shape = SubResource( 3 )
+_sections_unfolded = [ "Transform" ]
 
 [connection signal="timeout" from="ITimer" to="." method="_on_ITimer_timeout"]
 
