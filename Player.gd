@@ -120,11 +120,11 @@ func _physics_process(delta):
 	
 	# animations
 	# bad code incoming
-	if on_floor:
-		if abs(g_dash_velocity.x) > 80:
-			if $Sprite/AnimationPlayer.current_animation != "dash":
-				$Sprite/AnimationPlayer.play("dash")
-		elif abs(g_velocity.x) > 10:
+	if abs(g_dash_velocity.x) > 80:
+		if $Sprite/AnimationPlayer.current_animation != "dash":
+			$Sprite/AnimationPlayer.play("dash")
+	elif on_floor:
+		if abs(g_velocity.x) > 10:
 			if $Sprite/AnimationPlayer.current_animation != "walk":
 				$Sprite/AnimationPlayer.play("walk")
 		else:
@@ -134,13 +134,8 @@ func _physics_process(delta):
 		if g_velocity.y < 0:
 			if $Sprite/AnimationPlayer.current_animation != "jump":
 				$Sprite/AnimationPlayer.play("jump")
-			elif $Sprite/AnimationPlayer.current_animation != "fall":
-				$Sprite/AnimationPlayer.play("fall")
-	
-	if abs(g_dash_velocity.x) > 80:
-			if $Sprite/AnimationPlayer.current_animation != "dash":
-				$Sprite/AnimationPlayer.play("dash")
-	
+		elif $Sprite/AnimationPlayer.current_animation != "fall":
+			$Sprite/AnimationPlayer.play("fall")
 	
 	# special
 	## moonwlaking
