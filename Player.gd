@@ -38,6 +38,10 @@ var g_combo_timer = 0
 var g_dash_timer = 2
 var g_jump_number = 0
 
+# moon walk
+
+var g_is_moon_walking = false
+
 func _input(event):
 	# makes a buffer with the last C_MAX_COMBO_CHAIN keys pressed
 	if event is InputEventKey and event.pressed and !event.echo: 
@@ -59,6 +63,7 @@ func _physics_process(delta):
 	var move_right = Input.is_action_pressed("ui_right")
 	var move_left = Input.is_action_pressed("ui_left")
 	var move_jump = Input.is_action_just_pressed("ui_up")
+	var moon_walk = Input.is_action_just_pressed("ui_moon")
 	
 	
 	if move_right:
@@ -104,8 +109,10 @@ func _physics_process(delta):
 	
 	
 	# probably more anim stuff
-	
-	$Sprite.flip_h = !g_facing_right
+	if g_is_moon_walking:
+		$Sprite.flip_h = g_facing_right
+	else:
+		$Sprite.flip_h = !g_facing_right
 	
 	# animations
 	# bad code incoming
@@ -129,6 +136,10 @@ func _physics_process(delta):
 	
 	
 	# special
+	## moonwlaking
+	if moon_walk:
+		g_is_moon_walking = !g_is_moon_walking
+	
 	g_combo_timer += delta
 	if g_combo_timer > C_COMBO_TIMEOUT:                  
 			g_key_combo = []
@@ -139,16 +150,16 @@ func _physics_process(delta):
 	if g_key_combo.size() == 2 and E_HAS_DASH and g_dash_timer >= C_DASH_CD:
 		if g_key_combo[0] == g_key_combo[1]:
 			if g_key_combo[0] == "Right" or g_key_combo[0] == "D":
-				dash(E_DASH_SPEED, true)
+				dash(E_DASH_SPEED)
 			elif g_key_combo[0] == "Left" or g_key_combo[0] == "A":
-				dash(-E_DASH_SPEED, false)
+				dash(-E_DASH_SPEED)
 			g_dash_timer = 0
 	g_dash_velocity.x = lerp(g_dash_velocity.x, 0, 0.15)
 	
 	
 	
 	
-func dash(speed, dir_right):
+func dash(speed):
 	g_dash_velocity.x += speed
 	# anim stuff
 	
