@@ -3,7 +3,7 @@
 [ext_resource path="res://Textures/Tilesets/grass_tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=2]
 
-[node name="TestWorld" type="Node2D" index="0"]
+[node name="TestWorld" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="." index="0"]
 
@@ -32,6 +32,5 @@ __meta__ = {
 
 position = Vector2( 512, 416 )
 E_HAS_DOUBLE_JUMP = true
-
 
 

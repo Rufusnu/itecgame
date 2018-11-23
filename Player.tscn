@@ -10,24 +10,24 @@ extents = Vector2( 32, 32 )
 
 [sub_resource type="Animation" id=2]
 
-resource_name = "panda_walk"
+resource_name = "walk"
 length = 1.1
 loop = true
 step = 0.1
 tracks/0/type = "value"
-tracks/0/path = NodePath(":walk")
+tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
-"update": 0,
-"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 ]
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]
 }
 
-[node name="Player" type="KinematicBody2D"]
+[node name="Player" type="KinematicBody2D" index="0"]
 
 input_pickable = false
 collision_layer = 1
@@ -40,8 +40,8 @@ __meta__ = {
 E_MAX_WALK_SPEED = 300
 E_ACCEL = 40
 E_MAX_FALL_SPEED = 1000
-E_MAX_JUMP_SPEED = 500
-E_JUMP_SPEED = 500
+E_MAX_JUMP_SPEED = null
+E_JUMP_SPEED = 700
 E_GRAVITY = 20
 E_DASH_SPEED = 200
 E_HAS_DASH = null
@@ -56,18 +56,19 @@ shape = SubResource( 1 )
 
 texture = ExtResource( 2 )
 hframes = 12
-frame = 5
+frame = 2
 _sections_unfolded = [ "Animation" ]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite" index="0"]
 
 root_node = NodePath("..")
-autoplay = "panda_walk"
+autoplay = ""
 playback_process_mode = 1
 playback_default_blend_time = 0.0
 playback_speed = 1.0
-anims/panda_walk = SubResource( 2 )
+anims/walk = SubResource( 2 )
 blend_times = [  ]
+_sections_unfolded = [ "Playback Options" ]
 
 [node name="Camera2D" type="Camera2D" parent="." index="2"]
 
