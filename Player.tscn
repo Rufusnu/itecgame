@@ -57,6 +57,7 @@ _sections_unfolded = [ "Transform", "Z Index" ]
 
 texture = ExtResource( 2 )
 hframes = 12
+frame = 2
 _sections_unfolded = [ "Animation" ]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite" index="0"]
