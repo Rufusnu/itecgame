@@ -12,12 +12,29 @@ export (int) var E_GRAVITY
 # consts go here
 
 const C_NORMAL = Vector2(0, -1)
+const C_COMBO_TIMEOUT = 0.2
+const C_MAX_COMBO_CHAIN = 2
 
 
 
 # globals go here
 var g_velocity = Vector2()
 var g_facing_right = true
+
+var g_key_combo = []
+var g_combo_timer = 0
+
+func _input(event):
+	if event is InputEventKey and event.pressed and !event.echo: 
+		if g_combo_timer > C_COMBO_TIMEOUT:                  
+			g_key_combo = []
+		
+		g_key_combo.append(event.scancode)                     
+		if g_key_combo.size() > C_MAX_COMBO_CHAIN:               
+			g_key_combo.pop_front()
+		
+		print(g_key_combo)                                     
+		g_combo_timer = 0                                   
 
 func _physics_process(delta):
 	
@@ -61,6 +78,11 @@ func _physics_process(delta):
 	move_and_slide(g_velocity, C_NORMAL)
 	# end of movement
 	
-func dash():
+	# special
+	## dash
+	
+	
+	
+func dash(speed, dir_right):
 	pass
 	
