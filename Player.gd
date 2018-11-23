@@ -17,6 +17,7 @@ const C_NORMAL = Vector2(0, -1)
 
 # globals go here
 var g_velocity = Vector2()
+var g_facing_right = true
 
 func _physics_process(delta):
 	
@@ -56,15 +57,10 @@ func _physics_process(delta):
 		else:
 			g_velocity.x = lerp(g_velocity.x, 0, 0.01)
 	# probably more anim stuff
-	print(g_velocity.x)
 	
 	move_and_slide(g_velocity, C_NORMAL)
 	# end of movement
 	
-	
-	
-	
-	
-	
-	
+func dash():
+	pass
 	
