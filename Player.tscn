@@ -24,6 +24,8 @@ E_MAX_FALL_SPEED = 1000
 E_JUMP_SPEED = 700
 E_GRAVITY = 20
 E_DASH_SPEED = 200
+E_HAS_DASH = true
+E_HAS_DOUBLE_JUMP = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
 

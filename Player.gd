@@ -10,12 +10,18 @@ export (int) var E_JUMP_SPEED
 export (int) var E_GRAVITY
 
 export (int) var E_DASH_SPEED
+export (bool) var E_HAS_DASH
+export (bool) var E_HAS_DOUBLE_JUMP
 
 # consts go here
 
 const C_NORMAL = Vector2(0, -1)
+
 const C_COMBO_TIMEOUT = 0.2
 const C_MAX_COMBO_CHAIN = 2
+
+const C_DASH_CD = 2
+const C_MAX_JUMPS = 2
 
 
 
@@ -27,6 +33,9 @@ var g_facing_right = true
 
 var g_key_combo = []
 var g_combo_timer = 0
+
+var g_dash_timer = 2
+var g_jump_number = 0
 
 func _input(event):
 	# makes a buffer with the last C_MAX_COMBO_CHAIN keys pressed
@@ -59,8 +68,9 @@ func _physics_process(delta):
 		g_velocity.x = max(g_velocity.x - E_ACCEL, -E_MAX_WALK_SPEED)
 		# anim stuff
 	
-	if move_jump and on_floor:
+	if move_jump and g_jump_number > 0:
 		g_velocity.y -= E_JUMP_SPEED
+		g_jump_number -= 1
 		# anim stuff
 		
 	
@@ -86,7 +96,9 @@ func _physics_process(delta):
 			g_key_combo = []
 	
 	## dash
-	if g_key_combo.size() == 2:
+	g_dash_timer = min(g_dash_timer + delta, C_DASH_CD)
+	
+	if g_key_combo.size() == 2 and E_HAS_DASH and g_dash_timer >= C_DASH_CD:
 		if g_key_combo[0] == g_key_combo[1]:
 			if g_key_combo[0] == "Right" or g_key_combo[0] == "D":
 				dash(E_DASH_SPEED, true)
@@ -94,7 +106,12 @@ func _physics_process(delta):
 				dash(-E_DASH_SPEED, false)
 	g_dash_velocity.x = lerp(g_dash_velocity.x, 0, 0.15)
 	
-	
+	## double jump
+	if on_floor:
+		if E_HAS_DOUBLE_JUMP:
+			g_jump_number = C_MAX_JUMPS
+		else:
+			g_jump_number = 1
 	
 	
 func dash(speed, dir_right):
