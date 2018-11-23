@@ -192,7 +192,7 @@ func take_damage(damage):
 	g_health -= damage
 	if damage < 0:
 		die()
-	invincible(0.7)
+	invincible(0.8)
 
 func knock(velo):
 	g_velocity += velo
