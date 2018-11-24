@@ -60,7 +60,7 @@ var g_dash_timer = 2
 var g_attack_timer = 2
 var g_jump_number = 0
 
-var g_health = E_HEALTH
+var g_health 
 
 # moon walk
 
@@ -88,6 +88,8 @@ func _ready():
 	else:
 		background = E_CAVE_BG.instance()
 	add_child(background)
+	
+	g_health = E_HEALTH
 
 func _input(event):
 	# makes a buffer with the last C_MAX_COMBO_CHAIN keys pressed

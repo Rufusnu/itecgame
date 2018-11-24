@@ -8,7 +8,7 @@
 [ext_resource path="res://Scenes/Menu.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/LevelChange.tscn" type="PackedScene" id=7]
 
-[node name="TestWorld" type="Node2D"]
+[node name="TestWorld" type="Node2D" index="0"]
 
 [node name="TileMap" type="TileMap" parent="." index="0"]
 
@@ -57,13 +57,5 @@ E_LEVEL = ExtResource( 6 )
 
 position = Vector2( 1152, 0 )
 E_LEVEL = ExtResource( 6 )
-
-[connection signal="cd_over" from="Player" to="HUD" method="_on_Player_cd_over"]
-
-[connection signal="cd_start" from="Player" to="HUD" method="_on_Player_cd_start"]
-
-[connection signal="health_changed" from="Player" to="HUD" method="_on_Player_health_changed"]
-
-[connection signal="make_visible" from="Player" to="HUD" method="_on_Player_make_visible"]
 
 
