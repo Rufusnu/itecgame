@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Animations/JumpAnimation.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://Animations/player/Player_idle.tres" type="Animation" id=7]
 [ext_resource path="res://Animations/player/Player_jump.tres" type="Animation" id=8]
 [ext_resource path="res://Textures/parallax_forest/ParallaxBackground.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Textures/parallax_cave/Parallax_cave.tscn" type="PackedScene" id=10]
 
 [sub_resource type="Animation" id=1]
 
@@ -57,7 +58,7 @@ extents = Vector2( 15, 27 )
 custom_solver_bias = 0.0
 extents = Vector2( 64, 50 )
 
-[node name="Player" type="KinematicBody2D"]
+[node name="Player" type="KinematicBody2D" index="0"]
 
 z_index = 1
 input_pickable = false
@@ -164,7 +165,11 @@ wait_time = 0.25
 one_shot = true
 autostart = false
 
-[node name="ParallaxBackground" parent="." index="5" instance=ExtResource( 9 )]
+[node name="forest_bg" parent="." index="5" instance=ExtResource( 9 )]
+
+_sections_unfolded = [ "Pause", "Scroll" ]
+
+[node name="cave_bg" parent="." index="6" instance=ExtResource( 10 )]
 
 [connection signal="timeout" from="ITimer" to="." method="_on_ITimer_timeout"]
 
