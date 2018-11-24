@@ -6,7 +6,7 @@
 [ext_resource path="res://Scenes/LevelChange.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Menu.tscn" type="PackedScene" id=5]
 
-[node name="TestWorld" type="Node2D" index="0"]
+[node name="TestWorld" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="." index="0"]
 
@@ -45,6 +45,8 @@ E_HAS_ATTACK = true
 
 position = Vector2( -480, 128 )
 E_LEVEL = ExtResource( 5 )
+
+[node name="Sprite" type="Sprite" parent="." index="4"]
 
 [connection signal="cd_over" from="Player" to="HUD" method="_on_Player_cd_over"]
 
