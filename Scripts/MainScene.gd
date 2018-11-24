@@ -2,7 +2,7 @@ extends Node2D
 
 # consts go here
 
-const C_TEST_LEVEL = preload("res://TestWorld.tscn")
+const C_TEST_LEVEL = preload("res://Scenes/TestWorld.tscn")
 
 # globals go here
 
