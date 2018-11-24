@@ -1,13 +1,14 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Scenes/DialogInteract.gd" type="Script" id=1]
+[ext_resource path="res://icon.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
 extents = Vector2( 80, 64 )
 
-[node name="DialogInteract" type="Area2D" index="0"]
+[node name="DialogInteract" type="Area2D"]
 
 position = Vector2( 156.568, 96.8596 )
 input_pickable = true
@@ -26,11 +27,16 @@ __meta__ = {
 }
 E_TEXT = "Alune"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
+[node name="Sprite" type="Sprite" parent="." index="0"]
+
+texture = ExtResource( 2 )
+_sections_unfolded = [ "Z Index" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
 
 shape = SubResource( 1 )
 
-[node name="ColorRect" type="ColorRect" parent="." index="1"]
+[node name="ColorRect" type="ColorRect" parent="." index="2"]
 
 modulate = Color( 0.121536, 0.158982, 0.230469, 1 )
 anchor_left = 0.0
@@ -48,9 +54,9 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 color = Color( 1, 1, 1, 1 )
-_sections_unfolded = [ "Margin", "Material", "Visibility" ]
+_sections_unfolded = [ "Margin", "Material", "Pause", "Visibility" ]
 
-[node name="Label" type="Label" parent="." index="2"]
+[node name="Label" type="Label" parent="." index="3"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -73,12 +79,14 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Margin" ]
 
-[node name="Timer" type="Timer" parent="." index="3"]
+[node name="Timer" type="Timer" parent="." index="4"]
 
 process_mode = 1
 wait_time = 0.03
 one_shot = false
-autostart = true
+autostart = false
+
+[connection signal="area_entered" from="." to="." method="_on_DialogInteract_area_entered"]
 
 [connection signal="area_exited" from="." to="." method="_on_DialogInteract_area_exited"]
 
