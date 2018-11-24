@@ -38,6 +38,7 @@ E_DASH_SPEED = 1600
 E_HAS_DASH = true
 E_HAS_DOUBLE_JUMP = true
 E_HAS_ATTACK = true
+E_ATTACK = null
 
 [node name="HUD" parent="." index="2" instance=ExtResource( 3 )]
 
