@@ -28,6 +28,11 @@ export (int) var E_HEALTH
 export (PackedScene) var E_JUMP_ANIM
 export (PackedScene) var E_ATTACK
 
+export (bool) var E_BG
+
+export (PackedScene) var E_FOREST_BG
+export (PackedScene) var E_CAVE_BG
+
 # consts go here
 
 const C_NORMAL = Vector2(0, -1)
@@ -71,6 +76,12 @@ func _ready():
 	emit_signal("make_visible", "jump", E_HAS_DOUBLE_JUMP)
 	emit_signal("make_visible", "dash", E_HAS_DASH)
 	emit_signal("make_visible", "attack", E_HAS_ATTACK)
+	var background
+	if E_BG:
+		background = E_FOREST_BG.instance()
+	else:
+		background = E_CAVE_BG.instance()
+	add_child(background)
 
 func _input(event):
 	# makes a buffer with the last C_MAX_COMBO_CHAIN keys pressed
