@@ -1,9 +1,13 @@
 extends Node2D
 
+# exporrts go here
+
+export (PackedScene) var E_START_LEVEL 
+export (PackedScene) var E_TEST_LEVEL
+
 # consts go here
 
-const C_START_LEVEL = preload("res://Scenes/TestWorld.tscn")
-const C_TEST_LEVEL = preload("res://Scenes/TestWorld.tscn")
+ 
 
 # globals go here
 
@@ -17,11 +21,11 @@ func _physics_process(delta):
 
 func _on_Start_pressed():
 	$Menu.queue_free()
-	g_current_level = C_TEST_LEVEL.instance()
+	g_current_level = E_START_LEVEL.instance()
 	add_child(g_current_level)
 	
 
-func _on_level_chance(level):
+func _on_level_change(level):
 	g_current_level.queue_free()
 	g_current_level = level.instance()
 	add_child(g_current_level)

@@ -1,13 +1,14 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Textures/Tilesets/grass_tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/HUD.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scenes/LevelChange.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scenes/Menu.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Scenes/DialogInteract.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/DialogInteract.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/LevelChangeInteract.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Menu.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/LevelChange.tscn" type="PackedScene" id=7]
 
-[node name="TestWorld" type="Node2D"]
+[node name="TestWorld" type="Node2D" index="0"]
 
 [node name="TileMap" type="TileMap" parent="." index="0"]
 
@@ -42,15 +43,19 @@ E_HAS_ATTACK = true
 
 [node name="HUD" parent="." index="2" instance=ExtResource( 3 )]
 
-[node name="LevelChange" parent="." index="3" instance=ExtResource( 4 )]
-
-position = Vector2( -480, 128 )
-E_LEVEL = ExtResource( 5 )
-
-[node name="DialogInteract" parent="." index="4" instance=ExtResource( 6 )]
+[node name="DialogInteract" parent="." index="3" instance=ExtResource( 4 )]
 
 position = Vector2( 320, 448 )
 E_TEXT = "SA MORI TU CA MERGE!?"
+
+[node name="LevelChangeInteract" parent="." index="4" instance=ExtResource( 5 )]
+
+E_LEVEL = ExtResource( 6 )
+
+[node name="LevelChange" parent="." index="5" instance=ExtResource( 7 )]
+
+position = Vector2( 1152, 0 )
+E_LEVEL = ExtResource( 6 )
 
 [connection signal="cd_over" from="Player" to="HUD" method="_on_Player_cd_over"]
 
