@@ -11,7 +11,9 @@ func _ready():
 
 
 func _on_LevelChange_body_entered(body):
+	print("Alune?")
 	if body.name == "Player":
+		print("Alune")
 		emit_signal("level_change", E_LEVEL)
 
 

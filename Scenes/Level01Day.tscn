@@ -1,12 +1,18 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Textures/Tilesets/grass_tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/HUD.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/DialogInteract.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scenes/LevelChange.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/MakeFall.gd" type="Script" id=5]
+[ext_resource path="res://Scenes/LevelChange.tscn" type="PackedScene" id=6]
 
-[node name="Level01Day" type="Node2D"]
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 64, 500 )
+
+[node name="Level01Day" type="Node2D" index="0"]
 
 [node name="TileMap" type="TileMap" parent="." index="0"]
 
@@ -67,9 +73,27 @@ position = Vector2( 5504, 640 )
 
 [node name="LevelChange" type="Node2D" parent="." index="4"]
 
-[node name="LevelChange" parent="LevelChange" index="0" instance=ExtResource( 5 )]
+[node name="MakeFall" type="Area2D" parent="LevelChange" index="0"]
 
-position = Vector2( 9600, 1792 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+script = ExtResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelChange/MakeFall" index="0"]
+
+position = Vector2( 9600, 192 )
+shape = SubResource( 1 )
+
+[node name="LevelChange" parent="LevelChange" index="1" instance=ExtResource( 6 )]
+
+position = Vector2( 9591.32, 1928.7 )
+scale = Vector2( -47.0487, 1 )
+
+[connection signal="body_entered" from="LevelChange/MakeFall" to="LevelChange/MakeFall" method="_on_MakeFall_body_entered"]
 
 
-[editable path="LevelChange/LevelChange"]
