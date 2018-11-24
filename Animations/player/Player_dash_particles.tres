@@ -3,9 +3,9 @@
 [resource]
 
 resource_name = "dash_particles"
-length = 0.7
+length = 0.4
 loop = false
-step = 0.04
+step = 0.02
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
@@ -13,7 +13,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.04, 0.08, 0.16, 0.24, 0.32, 0.4, 0.48, 0.56 ),
+"times": PoolRealArray( 0, 0.02, 0.04, 0.08, 0.14, 0.2, 0.26, 0.32, 0.4 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 13, 14, 15, 16, 17, 18, 19, 20, 21 ]

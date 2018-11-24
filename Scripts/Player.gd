@@ -241,6 +241,14 @@ func _physics_process(delta):
 
 
 func dash(speed):
+	
+	var dash_particles = E_JUMP_ANIM.instance()
+	get_parent().add_child(dash_particles)
+	dash_particles.position = position
+	dash_particles.get_node("Sprite").flip_h = !g_facing_right
+	dash_particles.play("dash_particles")
+	
+	
 	emit_signal("cd_start","dash")
 	g_sent_dash = false
 	
