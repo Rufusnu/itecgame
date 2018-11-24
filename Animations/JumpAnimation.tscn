@@ -6,7 +6,7 @@
 [ext_resource path="res://Animations/player/Player_dash_particles.tres" type="Animation" id=4]
 [ext_resource path="res://Animations/player/Player_ground_jump.tres" type="Animation" id=5]
 
-[node name="JumpAnimation" type="Node2D" index="0"]
+[node name="JumpAnimation" type="Node2D"]
 
 script = ExtResource( 1 )
 

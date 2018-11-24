@@ -7,7 +7,6 @@
 [ext_resource path="res://Animations/player/Player_idle.tres" type="Animation" id=5]
 [ext_resource path="res://Animations/player/Player_jump.tres" type="Animation" id=6]
 
-
 [sub_resource type="Animation" id=1]
 
 resource_name = "dash"

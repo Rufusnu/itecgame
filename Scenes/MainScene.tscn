@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scripts/MainScene.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Menu.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Animations/background_panda.png" type="Texture" id=3]
+[ext_resource path="res://Textures/hud/button_idle.png" type="Texture" id=4]
+[ext_resource path="res://Textures/hud/button_active.png" type="Texture" id=5]
 
 [sub_resource type="Animation" id=1]
 
@@ -45,6 +47,11 @@ playback_default_blend_time = 0.0
 playback_speed = 1.0
 anims/bg = SubResource( 1 )
 blend_times = [  ]
+
+[node name="Start" parent="Menu" index="1"]
+
+texture_normal = ExtResource( 4 )
+texture_hover = ExtResource( 5 )
 
 [connection signal="pressed" from="Menu/Start" to="." method="_on_Start_pressed"]
 
