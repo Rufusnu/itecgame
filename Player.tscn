@@ -54,7 +54,7 @@ extents = Vector2( 15, 27 )
 custom_solver_bias = 0.0
 extents = Vector2( 64, 50 )
 
-[node name="Player" type="KinematicBody2D" index="0"]
+[node name="Player" type="KinematicBody2D"]
 
 input_pickable = false
 collision_layer = 2
@@ -78,8 +78,8 @@ E_JUMP_ANIM = ExtResource( 2 )
 [node name="Sprite" type="Sprite" parent="." index="0"]
 
 texture = ExtResource( 3 )
-hframes = 28
-frame = 17
+hframes = 32
+frame = 22
 _sections_unfolded = [ "Animation", "Visibility" ]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite" index="0"]
