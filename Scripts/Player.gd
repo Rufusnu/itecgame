@@ -22,6 +22,7 @@ export (int) var E_DASH_SPEED
 export (bool) var E_HAS_DASH
 export (bool) var E_HAS_DOUBLE_JUMP
 export (bool) var E_HAS_ATTACK
+export (bool) var E_HAS_SUPER
 
 export (int) var E_HEALTH
 
@@ -73,6 +74,11 @@ var g_sent_dash = true
 var g_sent_attack = true
 
 func _ready():
+	connect("cd_over", get_parent().get_node("HUD"), "_on_Player_cd_over")
+	connect("cd_start", get_parent().get_node("HUD"), "_on_Player_cd_start")
+	connect("make_visible", get_parent().get_node("HUD"), "_on_Player_make_visible")
+	connect("health_changed", get_parent().get_node("HUD"), "_on_Player_health_changed")
+	
 	emit_signal("make_visible", "jump", E_HAS_DOUBLE_JUMP)
 	emit_signal("make_visible", "dash", E_HAS_DASH)
 	emit_signal("make_visible", "attack", E_HAS_ATTACK)
@@ -122,9 +128,9 @@ func _physics_process(delta):
 		if E_HAS_DOUBLE_JUMP:
 			g_jump_number = C_MAX_JUMPS
 		else:
-			g_jump_number = 1
+			g_jump_number = 0
 	
-	if move_jump and g_jump_number > 0:
+	if move_jump and (on_floor or g_jump_number > 0 or E_HAS_SUPER):
 		g_velocity.y = max(g_velocity.y - E_JUMP_SPEED, -E_MAX_JUMP_SPEED)
 		var jump_particles = E_JUMP_ANIM.instance()
 		get_parent().add_child(jump_particles)
