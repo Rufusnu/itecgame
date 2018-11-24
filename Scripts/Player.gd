@@ -26,6 +26,7 @@ export (bool) var E_HAS_ATTACK
 export (int) var E_HEALTH
 
 export (PackedScene) var E_JUMP_ANIM
+export (PackedScene) var E_ATTACK
 
 # consts go here
 
@@ -164,7 +165,9 @@ func _physics_process(delta):
 	
 	# animations
 	# bad code incoming
-	if abs(g_dash_velocity.x) > 80:
+	if $Sprite/AnimationPlayer.current_animation == "hit":
+		pass
+	elif abs(g_dash_velocity.x) > 80:
 		if $Sprite/AnimationPlayer.current_animation != "dash":
 			$Sprite/AnimationPlayer.play("dash")
 	elif on_floor:
@@ -225,8 +228,11 @@ func _physics_process(delta):
 	g_attack_timer = min(g_attack_timer + delta, C_ATTACK_CD)
 	
 	if attack and E_HAS_ATTACK and g_attack_timer >= C_ATTACK_CD:
-		# to do
-		print("Attack")
+		var attack_area = E_ATTACK.instance()
+		attack_area.setup(20, g_facing_right)
+		add_child(attack_area)
+		$Sprite/AnimationPlayer.play("hit")
+		
 		g_attack_timer = 0
 	
 	if g_attack_timer >= C_ATTACK_CD and g_sent_attack:
