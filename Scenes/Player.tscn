@@ -1,13 +1,17 @@
-[gd_scene load_steps=13 format=2]
+
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Animations/JumpAnimation.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scenes/AttackArea.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Animations/player/panda_anim01.png" type="Texture" id=4]
-[ext_resource path="res://Animations/player/Player_fall.tres" type="Animation" id=5]
-[ext_resource path="res://Animations/player/Player_hit.tres" type="Animation" id=6]
-[ext_resource path="res://Animations/player/Player_idle.tres" type="Animation" id=7]
-[ext_resource path="res://Animations/player/Player_jump.tres" type="Animation" id=8]
+[ext_resource path="res://Animations/player/panda_anim01.png" type="Texture" id=3]
+[ext_resource path="res://Animations/player/Player_fall.tres" type="Animation" id=4]
+[ext_resource path="res://Animations/player/Player_hit.tres" type="Animation" id=5]
+[ext_resource path="res://Animations/player/Player_idle.tres" type="Animation" id=6]
+[ext_resource path="res://Animations/player/Player_jump.tres" type="Animation" id=7]
+[ext_resource path="res://Textures/parallax_forest/layers/parallax-forest-back-trees.png" type="Texture" id=8]
+[ext_resource path="res://Textures/parallax_forest/layers/parallax-forest-lights.png" type="Texture" id=9]
+[ext_resource path="res://Textures/parallax_forest/layers/parallax-forest-middle-trees.png" type="Texture" id=10]
+[ext_resource path="res://Textures/parallax_forest/layers/parallax-forest-front-trees.png" type="Texture" id=11]
 
 [sub_resource type="Animation" id=1]
 
@@ -56,7 +60,7 @@ extents = Vector2( 15, 27 )
 custom_solver_bias = 0.0
 extents = Vector2( 64, 50 )
 
-[node name="Player" type="KinematicBody2D"]
+[node name="Player" type="KinematicBody2D" index="0"]
 
 input_pickable = false
 collision_layer = 2
@@ -161,6 +165,86 @@ process_mode = 1
 wait_time = 0.25
 one_shot = true
 autostart = false
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="." index="5"]
+
+layer = -1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+scroll_offset = Vector2( 0, 0 )
+scroll_base_offset = Vector2( 0, 0 )
+scroll_base_scale = Vector2( 1, 1 )
+scroll_limit_begin = Vector2( 0, 0 )
+scroll_limit_end = Vector2( 0, 0 )
+scroll_ignore_camera_zoom = false
+_sections_unfolded = [ "Scroll" ]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground" index="0"]
+
+motion_scale = Vector2( 0.1, 0.15 )
+motion_offset = Vector2( 0, 0 )
+motion_mirroring = Vector2( 1088, 0 )
+_sections_unfolded = [ "Motion" ]
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer" index="0"]
+
+position = Vector2( 170, 40 )
+scale = Vector2( 4, 3.8 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 272, 160 )
+_sections_unfolded = [ "Offset", "Region", "Transform" ]
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground" index="1"]
+
+motion_scale = Vector2( 0.2, 0.15 )
+motion_offset = Vector2( 0, 0 )
+motion_mirroring = Vector2( 1088, 0 )
+_sections_unfolded = [ "Motion" ]
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer3" index="0"]
+
+modulate = Color( 1, 1, 1, 0.370157 )
+position = Vector2( 170, 40 )
+scale = Vector2( 4, 3.8 )
+texture = ExtResource( 9 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 272, 160 )
+_sections_unfolded = [ "Offset", "Region", "Transform", "Visibility" ]
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground" index="2"]
+
+motion_scale = Vector2( 0.3, 0.15 )
+motion_offset = Vector2( 0, 0 )
+motion_mirroring = Vector2( 1088, 0 )
+_sections_unfolded = [ "Motion" ]
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer2" index="0"]
+
+position = Vector2( 170, 40 )
+scale = Vector2( 4, 3.8 )
+texture = ExtResource( 10 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 272, 160 )
+_sections_unfolded = [ "Offset", "Region", "Transform" ]
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="ParallaxBackground" index="3"]
+
+motion_scale = Vector2( 0.5, 0.15 )
+motion_offset = Vector2( 0, 0 )
+motion_mirroring = Vector2( 1088, 0 )
+_sections_unfolded = [ "Motion" ]
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer4" index="0"]
+
+position = Vector2( 170, 40 )
+scale = Vector2( 4, 3.8 )
+texture = ExtResource( 11 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 272, 160 )
+_sections_unfolded = [ "Offset", "Region", "Transform", "Z Index" ]
 
 [connection signal="timeout" from="ITimer" to="." method="_on_ITimer_timeout"]
 
