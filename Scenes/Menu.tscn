@@ -1,17 +1,13 @@
 [gd_scene load_steps=9 format=2]
 
-<<<<<<< HEAD
 [ext_resource path="res://Scripts/Menu.gd" type="Script" id=1]
-[ext_resource path="res://icon.png" type="Texture" id=2]
-[ext_resource path="res://Scripts/Neeee.gd" type="Script" id=3]
-=======
-[ext_resource path="res://Scenes/Menu.gd" type="Script" id=1]
 [ext_resource path="res://Animations/background_panda.png" type="Texture" id=2]
 [ext_resource path="res://Animations/button_idle.png" type="Texture" id=3]
 [ext_resource path="res://Animations/button_active.png" type="Texture" id=4]
 [ext_resource path="res://Textures/hud/gear_idle.png" type="Texture" id=5]
 [ext_resource path="res://Textures/hud/gear_active.png" type="Texture" id=6]
 [ext_resource path="res://Scripts/Neeee.gd" type="Script" id=7]
+
 
 [sub_resource type="Animation" id=1]
 
@@ -31,7 +27,7 @@ tracks/0/keys = {
 "update": 1,
 "values": [  ]
 }
->>>>>>> 7e67a728943658dc9a4f36d45d012098e3eaf3a6
+
 
 [node name="Menu" type="CanvasLayer" index="0"]
 
