@@ -50,8 +50,14 @@ blend_times = [  ]
 
 [node name="Start" parent="Menu" index="1"]
 
+margin_left = -128.0
+margin_top = -32.0
+margin_right = 0.0
+margin_bottom = 0.0
+rect_scale = Vector2( 2, 2 )
 texture_normal = ExtResource( 4 )
 texture_hover = ExtResource( 5 )
+_sections_unfolded = [ "Margin", "Rect", "Textures" ]
 
 [connection signal="pressed" from="Menu/Start" to="." method="_on_Start_pressed"]
 
