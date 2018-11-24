@@ -11,4 +11,3 @@ script = ExtResource( 1 )
 [node name="Menu" parent="." index="0" instance=ExtResource( 2 )]
 
 
-[editable path="Menu"]

@@ -215,10 +215,14 @@ func _physics_process(delta):
 	var interact = Input.is_action_just_pressed("ui_interact")
 	
 	if interact:
+		
 		var bodies = $InteractArea.get_overlapping_areas()
 		for body in bodies:
 			if body.get_parent().has_method("interact"):
 				body.get_parent().interact()
+				break
+			elif body.has_method("interact"):
+				body.interact()
 				break
 	
 	# attack
