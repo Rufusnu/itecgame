@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=10 format=2]
+[gd_resource type="TileSet" load_steps=11 format=2]
 
 [ext_resource path="res://Textures/terrain/grass/grass01.png" type="Texture" id=1]
 [ext_resource path="res://Textures/terrain/grass/grass02.png" type="Texture" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Textures/terrain/grass/grass06.png" type="Texture" id=6]
 [ext_resource path="res://Textures/terrain/grass/grass07.png" type="Texture" id=7]
 [ext_resource path="res://Textures/terrain/grass/grass08.png" type="Texture" id=8]
+[ext_resource path="res://Textures/terrain/grass_bg.png" type="Texture" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -136,4 +137,13 @@ extents = Vector2( 32, 32 )
 "shape": SubResource( 1 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 32, 32 )
 } ]
+9/name = "grass09"
+9/texture = ExtResource( 9 )
+9/tex_offset = Vector2( 0, 0 )
+9/modulate = Color( 1, 1, 1, 1 )
+9/region = Rect2( 0, 0, 64, 64 )
+9/is_autotile = false
+9/occluder_offset = Vector2( 32, 32 )
+9/navigation_offset = Vector2( 32, 32 )
+9/shapes = [  ]
 
