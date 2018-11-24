@@ -5,7 +5,7 @@
 [ext_resource path="res://Textures/parallax_forest/layers/parallax-forest-middle-trees.png" type="Texture" id=3]
 [ext_resource path="res://Textures/parallax_forest/layers/parallax-forest-front-trees.png" type="Texture" id=4]
 
-[node name="ParallaxBackground" type="ParallaxBackground"]
+[node name="ParallaxBackground" type="ParallaxBackground" index="0"]
 
 layer = -1
 offset = Vector2( 0, 0 )
@@ -22,7 +22,7 @@ _sections_unfolded = [ "Scroll" ]
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="." index="0"]
 
-motion_scale = Vector2( 0.1, 0.15 )
+motion_scale = Vector2( 0.1, 0.03 )
 motion_offset = Vector2( 0, 0 )
 motion_mirroring = Vector2( 1088, 0 )
 _sections_unfolded = [ "Motion" ]
@@ -38,7 +38,7 @@ _sections_unfolded = [ "Offset", "Region", "Transform" ]
 
 [node name="ParallaxLayer3" type="ParallaxLayer" parent="." index="1"]
 
-motion_scale = Vector2( 0.2, 0.15 )
+motion_scale = Vector2( 0.2, 0.03 )
 motion_offset = Vector2( 0, 0 )
 motion_mirroring = Vector2( 1088, 0 )
 _sections_unfolded = [ "Motion" ]
@@ -55,7 +55,7 @@ _sections_unfolded = [ "Offset", "Region", "Transform", "Visibility" ]
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="." index="2"]
 
-motion_scale = Vector2( 0.3, 0.15 )
+motion_scale = Vector2( 0.3, 0.03 )
 motion_offset = Vector2( 0, 0 )
 motion_mirroring = Vector2( 1088, 0 )
 _sections_unfolded = [ "Motion" ]
@@ -71,7 +71,7 @@ _sections_unfolded = [ "Offset", "Region", "Transform" ]
 
 [node name="ParallaxLayer4" type="ParallaxLayer" parent="." index="3"]
 
-motion_scale = Vector2( 0.5, 0.15 )
+motion_scale = Vector2( 0.5, 0.03 )
 motion_offset = Vector2( 0, 0 )
 motion_mirroring = Vector2( 1088, 0 )
 _sections_unfolded = [ "Motion" ]
