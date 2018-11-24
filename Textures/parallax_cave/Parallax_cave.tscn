@@ -22,7 +22,7 @@ scroll_ignore_camera_zoom = false
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="." index="0"]
 
-motion_scale = Vector2( 1, 0.1 )
+motion_scale = Vector2( 1, 0.03 )
 motion_offset = Vector2( 0, 0 )
 motion_mirroring = Vector2( 1065, 0 )
 _sections_unfolded = [ "Motion" ]
@@ -35,7 +35,7 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="." index="1"]
 
-motion_scale = Vector2( 0.2, 0.1 )
+motion_scale = Vector2( 0.2, 0.03 )
 motion_offset = Vector2( 0, 0 )
 motion_mirroring = Vector2( 1065, 0 )
 _sections_unfolded = [ "Motion" ]
@@ -48,7 +48,7 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="ParallaxLayer3" type="ParallaxLayer" parent="." index="2"]
 
-motion_scale = Vector2( 0.4, 0.1 )
+motion_scale = Vector2( 0.4, 0.03 )
 motion_offset = Vector2( 0, 0 )
 motion_mirroring = Vector2( 1065, 0 )
 _sections_unfolded = [ "Motion" ]
@@ -61,7 +61,7 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="ParallaxLayer4" type="ParallaxLayer" parent="." index="3"]
 
-motion_scale = Vector2( 0.5, 0.1 )
+motion_scale = Vector2( 0.5, 0.03 )
 motion_offset = Vector2( 0, 0 )
 motion_mirroring = Vector2( 1065, 0 )
 _sections_unfolded = [ "Motion" ]
@@ -74,7 +74,7 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="ParallaxLayer5" type="ParallaxLayer" parent="." index="4"]
 
-motion_scale = Vector2( 0.6, 0.1 )
+motion_scale = Vector2( 0.6, 0.03 )
 motion_offset = Vector2( 0, 0 )
 motion_mirroring = Vector2( 1065, 0 )
 _sections_unfolded = [ "Motion" ]
@@ -88,7 +88,7 @@ _sections_unfolded = [ "Transform" ]
 [node name="ParallaxLayer6" type="ParallaxLayer" parent="." index="5"]
 
 visible = false
-motion_scale = Vector2( 0.8, 0.1 )
+motion_scale = Vector2( 0.8, 0.03 )
 motion_offset = Vector2( 0, 0 )
 motion_mirroring = Vector2( 1065, 0 )
 _sections_unfolded = [ "Motion" ]
