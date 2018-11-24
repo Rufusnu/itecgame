@@ -1,5 +1,12 @@
 extends KinematicBody2D
 
+# signals
+
+signal game_over
+signal health_changed(hp)
+signal cd_over(power)
+signal cd_start(power)
+signal make_visible(power, state)
 
 # exports go here
 export (int) var E_MAX_WALK_SPEED
@@ -11,8 +18,10 @@ export (int) var E_JUMP_SPEED
 export (int) var E_GRAVITY
 
 export (int) var E_DASH_SPEED
+
 export (bool) var E_HAS_DASH
 export (bool) var E_HAS_DOUBLE_JUMP
+export (bool) var E_HAS_ATTACK
 
 export (int) var E_HEALTH
 
@@ -26,6 +35,7 @@ const C_COMBO_TIMEOUT = 0.2
 const C_MAX_COMBO_CHAIN = 2
 
 const C_DASH_CD = 1
+const C_ATTACK_CD = 1
 const C_MAX_JUMPS = 2
 
 
@@ -40,6 +50,7 @@ var g_key_combo = []
 var g_combo_timer = 0
 
 var g_dash_timer = 2
+var g_attack_timer = 2
 var g_jump_number = 0
 
 var g_health = E_HEALTH
@@ -47,6 +58,18 @@ var g_health = E_HEALTH
 # moon walk
 
 var g_is_moon_walking = false
+
+
+# bodge
+
+var g_sent_jump = true
+var g_sent_dash = true
+var g_sent_attack = true
+
+func _ready():
+	emit_signal("make_visible", "jump", E_HAS_DOUBLE_JUMP)
+	emit_signal("make_visible", "dash", E_HAS_DASH)
+	emit_signal("make_visible", "attack", E_HAS_ATTACK)
 
 func _input(event):
 	# makes a buffer with the last C_MAX_COMBO_CHAIN keys pressed
@@ -102,7 +125,17 @@ func _physics_process(delta):
 			jump_particles.position.y += 64
 			jump_particles.play("air_jump")
 		# anim stuff
+	
+	# signal 
+	if g_jump_number < 1 and !g_sent_jump:
+		emit_signal("cd_start", "jump")
+		g_sent_jump = true
+	elif g_sent_jump and g_jump_number >= 1:
+		emit_signal("cd_over", "jump")
+		g_sent_jump = false
 		
+	
+	
 	# too much gravity
 	if on_floor:
 		g_velocity.y = min(g_velocity.y + E_ACCEL, 15)
@@ -168,10 +201,11 @@ func _physics_process(delta):
 				dash(-E_DASH_SPEED)
 			g_dash_timer = 0
 	
+	if g_dash_timer >= C_DASH_CD and !g_sent_dash:
+		emit_signal("cd_over", "dash")
+		g_sent_dash = true
+	
 	g_dash_velocity.x = lerp(g_dash_velocity.x, 0, 0.15)
-	
-	
-	
 	
 	
 	# interact
@@ -184,11 +218,32 @@ func _physics_process(delta):
 				body.get_parent().interact()
 				break
 	
+	# attack
 	
+	var attack = Input.is_action_just_pressed("ui_attack")
 	
+	g_attack_timer = min(g_attack_timer + delta, C_ATTACK_CD)
 	
+	if attack and E_HAS_ATTACK and g_attack_timer >= C_ATTACK_CD:
+		# to do
+		print("Attack")
+		g_attack_timer = 0
 	
+	if g_attack_timer >= C_ATTACK_CD and g_sent_attack:
+		emit_signal("cd_over", "attack")
+		g_sent_attack = false
+	elif !g_sent_attack and g_attack_timer <C_ATTACK_CD:
+		emit_signal("cd_start", "attack")
+		g_sent_attack = true
+
+
+
+
+
 func dash(speed):
+	emit_signal("cd_start","dash")
+	g_sent_dash = false
+	
 	invincible(0.25)
 	g_dash_velocity.x += speed
 	g_velocity.y -= 100
@@ -196,6 +251,7 @@ func dash(speed):
 
 func take_damage(damage):
 	g_health -= damage
+	emit_signal("health_changed", g_health)
 	if damage < 0:
 		die()
 	invincible(0.8)
@@ -210,6 +266,7 @@ func invincible(time):
 
 func die():
 	print("askglasjfa")
+	emit_signal("game_over")
 
 func _on_ITimer_timeout():
 	set_collision_mask_bit(4, 1)

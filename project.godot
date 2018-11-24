@@ -68,10 +68,13 @@ ui_moon=[ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"
  ]
 ui_interact=[ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":69,"unicode":0,"echo":false,"script":null)
  ]
+ui_attack=[ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":70,"unicode":0,"echo":false,"script":null)
+ ]
 
 [rendering]
 
 quality/intended_usage/framebuffer_mode=3
 quality/intended_usage/framebuffer_allocation=0
 quality/intended_usage/framebuffer_allocation.mobile=0
+quality/2d/use_pixel_snap=true
 environment/default_environment="res://default_env.tres"

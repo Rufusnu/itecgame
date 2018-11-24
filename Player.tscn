@@ -7,7 +7,7 @@
 [ext_resource path="res://Animations/player/Player_idle.tres" type="Animation" id=5]
 [ext_resource path="res://Animations/player/Player_jump.tres" type="Animation" id=6]
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=1]
 
 resource_name = "dash"
 length = 1.0
@@ -26,9 +26,8 @@ tracks/0/keys = {
 "values": [ 17, 18, 19, 18, 17 ]
 }
 
-[sub_resource type="Animation" id=1]
+[sub_resource type="Animation" id=2]
 
-resource_name = "walk"
 length = 1.2
 loop = true
 step = 0.1
@@ -45,17 +44,17 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 ]
 }
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=3]
 
 custom_solver_bias = 0.0
 extents = Vector2( 15, 27 )
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=4]
 
 custom_solver_bias = 0.0
 extents = Vector2( 64, 50 )
 
-[node name="Player" type="KinematicBody2D"]
+[node name="Player" type="KinematicBody2D" index="0"]
 
 input_pickable = false
 collision_layer = 2
@@ -63,18 +62,16 @@ collision_mask = 21
 collision/safe_margin = 0.08
 script = ExtResource( 1 )
 _sections_unfolded = [ "Collision", "Transform" ]
-__meta__ = {
-"_edit_group_": true
-}
 E_MAX_WALK_SPEED = 300
 E_ACCEL = 40
 E_MAX_FALL_SPEED = 1000
-E_MAX_JUMP_SPEED = 700
-E_JUMP_SPEED = 700
+E_MAX_JUMP_SPEED = 500
+E_JUMP_SPEED = 500
 E_GRAVITY = 20
-E_DASH_SPEED = 200
+E_DASH_SPEED = 1200
 E_HAS_DASH = false
 E_HAS_DOUBLE_JUMP = false
+E_HAS_ATTACK = false
 E_HEALTH = 100
 E_JUMP_ANIM = ExtResource( 2 )
 
@@ -92,11 +89,11 @@ autoplay = ""
 playback_process_mode = 1
 playback_default_blend_time = 0.0
 playback_speed = 1.0
-anims/dash = SubResource( 4 )
+anims/dash = SubResource( 1 )
 anims/fall = ExtResource( 4 )
 anims/idle = ExtResource( 5 )
 anims/jump = ExtResource( 6 )
-anims/walk = SubResource( 1 )
+anims/walk = SubResource( 2 )
 blend_times = [  ]
 _sections_unfolded = [ "Playback Options" ]
 
@@ -104,12 +101,11 @@ _sections_unfolded = [ "Playback Options" ]
 
 visible = false
 position = Vector2( 0, 3 )
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 _sections_unfolded = [ "Transform", "Z Index" ]
 
 [node name="Camera2D" type="Camera2D" parent="." index="2"]
 
-visible = false
 anchor_mode = 1
 rotating = false
 current = true
@@ -152,7 +148,7 @@ _sections_unfolded = [ "Audio Bus", "Collision" ]
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractArea" index="0"]
 
 position = Vector2( 0, -15 )
-shape = SubResource( 3 )
+shape = SubResource( 4 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="ITimer" type="Timer" parent="." index="4"]
