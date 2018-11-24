@@ -36,7 +36,7 @@ const C_MAX_COMBO_CHAIN = 2
 
 const C_DASH_CD = 1
 const C_ATTACK_CD = 1
-const C_MAX_JUMPS = 2
+const C_MAX_JUMPS = 1
 
 
 
@@ -114,7 +114,6 @@ func _physics_process(delta):
 	
 	if move_jump and g_jump_number > 0:
 		g_velocity.y = max(g_velocity.y - E_JUMP_SPEED, -E_MAX_JUMP_SPEED)
-		g_jump_number -= 1
 		var jump_particles = E_JUMP_ANIM.instance()
 		get_parent().add_child(jump_particles)
 		jump_particles.position = position
@@ -122,6 +121,7 @@ func _physics_process(delta):
 			jump_particles.position.y -= 16
 			jump_particles.play("ground_jump")
 		else:
+			g_jump_number -= 1
 			jump_particles.position.y += 64
 			jump_particles.play("air_jump")
 		# anim stuff
@@ -246,7 +246,6 @@ func dash(speed):
 	
 	invincible(0.25)
 	g_dash_velocity.x += speed
-	g_velocity.y -= 100
 	
 
 func take_damage(damage):
