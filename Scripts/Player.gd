@@ -50,6 +50,7 @@ const C_MAX_JUMPS = 1
 # globals go here
 var g_velocity = Vector2()
 var g_dash_velocity = Vector2()
+var g_floor_velo = Vector2()
 
 var g_facing_right = true
 
