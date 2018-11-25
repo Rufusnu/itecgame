@@ -124,6 +124,7 @@ func _physics_process(delta):
 		g_velocity.x = max(g_velocity.x - E_ACCEL, -E_MAX_WALK_SPEED)
 		g_facing_right = false
 		# anim stuff
+	
 	# special
 	## double jump
 	if on_floor:
