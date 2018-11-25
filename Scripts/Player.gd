@@ -124,6 +124,7 @@ func _physics_process(delta):
 		g_velocity.x = max(g_velocity.x - E_ACCEL, -E_MAX_WALK_SPEED)
 		g_facing_right = false
 		# anim stuff
+	
 	# special
 	## double jump
 	if on_floor:
@@ -215,13 +216,17 @@ func _physics_process(delta):
 	## dash
 	g_dash_timer = min(g_dash_timer + delta, C_DASH_CD)
 	
-	if g_key_combo.size() == 2 and E_HAS_DASH and g_dash_timer >= C_DASH_CD:
-		if g_key_combo[0] == g_key_combo[1]:
+	if g_key_combo.size() == 2:
+		if E_HAS_DASH and g_dash_timer >= C_DASH_CD and g_key_combo[0] == g_key_combo[1]:
 			if g_key_combo[0] == "Right" or g_key_combo[0] == "D":
 				dash(E_DASH_SPEED)
+				g_dash_timer = 0
 			elif g_key_combo[0] == "Left" or g_key_combo[0] == "A":
 				dash(-E_DASH_SPEED)
-			g_dash_timer = 0
+				g_dash_timer = 0
+		
+		if g_key_combo[0] == "S" and g_key_combo[1] == "P":
+			E_HAS_SUPER = !E_HAS_SUPER
 	
 	if g_dash_timer >= C_DASH_CD and !g_sent_dash:
 		emit_signal("cd_over", "dash")
