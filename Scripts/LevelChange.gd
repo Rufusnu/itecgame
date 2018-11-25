@@ -5,7 +5,6 @@ signal level_change(level)
 export (PackedScene) var E_LEVEL
 
 func _ready():
-	print(get_tree().get_root().get_node("MainScene").name)
 	connect("level_change", get_tree().get_root().get_node("MainScene"), "_on_level_change")
 
 
