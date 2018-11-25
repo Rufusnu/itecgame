@@ -80,6 +80,8 @@ func _ready():
 	connect("make_visible", get_parent().get_node("HUD"), "_on_Player_make_visible")
 	connect("health_changed", get_parent().get_node("HUD"), "_on_Player_health_changed")
 	
+	connect("game_over", get_tree().get_root().get_node("MainScene"), "reset")
+	
 	emit_signal("make_visible", "jump", E_HAS_DOUBLE_JUMP)
 	emit_signal("make_visible", "dash", E_HAS_DASH)
 	emit_signal("make_visible", "attack", E_HAS_ATTACK)
@@ -307,7 +309,6 @@ func invincible(time):
 	$ITimer.start()
 
 func die():
-	print("askglasjfa")
 	emit_signal("game_over")
 
 func _on_ITimer_timeout():

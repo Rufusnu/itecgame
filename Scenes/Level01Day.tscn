@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Textures/Tilesets/grass_tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
@@ -6,8 +6,9 @@
 [ext_resource path="res://Scenes/DialogInteract.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scripts/MakeFall.gd" type="Script" id=5]
 [ext_resource path="res://Scenes/LevelChange.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Textures/terrain/grass/grass06.png" type="Texture" id=7]
-[ext_resource path="res://Textures/terrain/grass/grass14.png" type="Texture" id=8]
+[ext_resource path="res://Scenes/DreamWorld.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Textures/terrain/grass/grass06.png" type="Texture" id=8]
+[ext_resource path="res://Textures/terrain/grass/grass14.png" type="Texture" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -76,7 +77,7 @@ tracks/0/keys = {
 "values": [ Vector2( 6048, 2592 ), Vector2( 6048, 2144 ), Vector2( 6048, 2144 ), Vector2( 6048, 2592 ) ]
 }
 
-[node name="Level01Day" type="Node2D" index="0"]
+[node name="Level01Day" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="." index="0"]
 
@@ -168,6 +169,7 @@ shape = SubResource( 1 )
 
 position = Vector2( 9591.32, 1928.7 )
 scale = Vector2( -47.0487, 1 )
+E_LEVEL = ExtResource( 7 )
 
 [node name="Moving" type="Node2D" parent="." index="5"]
 
@@ -204,7 +206,7 @@ blend_times = [  ]
 
 [node name="Sprite" type="Sprite" parent="Moving/MovinPlat" index="2"]
 
-texture = ExtResource( 7 )
+texture = ExtResource( 8 )
 
 [node name="MovinPlat2" type="KinematicBody2D" parent="Moving" index="1"]
 
@@ -234,7 +236,7 @@ blend_times = [  ]
 
 [node name="Sprite" type="Sprite" parent="Moving/MovinPlat2" index="2"]
 
-texture = ExtResource( 7 )
+texture = ExtResource( 8 )
 
 [node name="MovinPlat3" type="KinematicBody2D" parent="Moving" index="2"]
 
@@ -264,7 +266,7 @@ blend_times = [  ]
 
 [node name="Sprite" type="Sprite" parent="Moving/MovinPlat3" index="2"]
 
-texture = ExtResource( 7 )
+texture = ExtResource( 8 )
 
 [node name="FakeWall" type="Node2D" parent="." index="6"]
 
@@ -276,32 +278,32 @@ __meta__ = {
 [node name="Sprite" type="Sprite" parent="FakeWall" index="0"]
 
 position = Vector2( 160, 288 )
-texture = ExtResource( 8 )
+texture = ExtResource( 9 )
 
 [node name="Sprite2" type="Sprite" parent="FakeWall" index="1"]
 
 position = Vector2( 96, 288 )
-texture = ExtResource( 8 )
+texture = ExtResource( 9 )
 
 [node name="Sprite3" type="Sprite" parent="FakeWall" index="2"]
 
 position = Vector2( 32, 288 )
-texture = ExtResource( 8 )
+texture = ExtResource( 9 )
 
 [node name="Sprite4" type="Sprite" parent="FakeWall" index="3"]
 
 position = Vector2( -32, 288 )
-texture = ExtResource( 8 )
+texture = ExtResource( 9 )
 
 [node name="Sprite5" type="Sprite" parent="FakeWall" index="4"]
 
 position = Vector2( -96, 288 )
-texture = ExtResource( 8 )
+texture = ExtResource( 9 )
 
 [node name="Sprite6" type="Sprite" parent="FakeWall" index="5"]
 
 position = Vector2( -160, 288 )
-texture = ExtResource( 8 )
+texture = ExtResource( 9 )
 
 [connection signal="body_entered" from="LevelChange/MakeFall" to="LevelChange/MakeFall" method="_on_MakeFall_body_entered"]
 

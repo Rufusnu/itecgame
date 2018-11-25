@@ -12,6 +12,7 @@ export (PackedScene) var E_TEST_LEVEL
 # globals go here
 
 var g_current_level = null
+var g_level = null
 
 func _physics_process(delta):
 	pass
@@ -26,6 +27,13 @@ func _on_Start_pressed():
 	
 
 func _on_level_change(level):
+	g_level = level
 	g_current_level.queue_free()
-	g_current_level = level.instance()
+	g_current_level = g_level.instance()
+	add_child(g_current_level)
+	
+
+func reset():
+	g_current_level.queue_free()
+	g_current_level = g_level.instance()
 	add_child(g_current_level)
