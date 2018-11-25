@@ -1,4 +1,4 @@
-extends KinematicBody2D
+extends Area2D
 
 export (int) var E_SPEED
 export (int) var E_DAMAGE
@@ -18,15 +18,21 @@ func _ready():
 	$Timer.start()
 
 func _physics_process(delta):
-	var body = move_and_collide(g_velocity * delta)
-	if body:
-		if body.collider.name == "Player":
-			body.collider.take_damage(E_DAMAGE)
-			body.collider.knock(g_knock_velo)
-		die()
+	position += g_velocity * delta
+	var bodies = get_overlapping_bodies()
+	for body in bodies:
+		if body:
+			if body.name == "Player":
+				body.take_damage(E_DAMAGE)
+				body.knock(g_knock_velo)
+			die()
 
 func die():
 	queue_free()
 
 
 
+
+
+func _on_Timer_timeout():
+	die()

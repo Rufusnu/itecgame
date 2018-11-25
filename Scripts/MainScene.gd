@@ -3,7 +3,7 @@ extends Node2D
 # exporrts go here
 
 export (PackedScene) var E_START_LEVEL 
-export (PackedScene) var E_TEST_LEVEL
+export (PackedScene) var E_MENU
 
 # consts go here
 
@@ -37,3 +37,8 @@ func reset():
 	g_current_level.queue_free()
 	g_current_level = g_level.instance()
 	add_child(g_current_level)
+	
+func win():
+	g_current_level.queue_free()
+	var menu = E_MENU.instance()
+	add_child(menu)

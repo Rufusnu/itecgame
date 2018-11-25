@@ -161,8 +161,8 @@ func _physics_process(delta):
 	
 	
 	# too much gravity
-	if on_floor:
-		g_velocity.y = min(g_velocity.y + E_ACCEL, 15)
+	if on_floor or g_dash_velocity.x > 80:
+		g_velocity.y = min(g_velocity.y + E_GRAVITY, 15)
 	else:
 		g_velocity.y = min(g_velocity.y + E_GRAVITY, E_MAX_FALL_SPEED)
 	
@@ -289,7 +289,7 @@ func dash(speed):
 	emit_signal("cd_start","dash")
 	g_sent_dash = false
 	
-	invincible(0.25)
+	invincible(0.32)
 	g_dash_velocity.x += speed
 	
 
@@ -305,6 +305,7 @@ func knock(velo):
 
 func invincible(time):
 	set_collision_mask_bit(4, 0)
+	set_collision_layer_bit(1, 0)
 	$ITimer.set_wait_time(time)
 	$ITimer.start()
 
@@ -313,3 +314,4 @@ func die():
 
 func _on_ITimer_timeout():
 	set_collision_mask_bit(4, 1)
+	set_collision_layer_bit(1, 1)

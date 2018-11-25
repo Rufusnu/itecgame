@@ -1,0 +1,151 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scenes/Bullet.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/Bullet.gd" type="Script" id=2]
+
+[node name="DashWave" type="Node2D"]
+
+[node name="Bullet" type="KinematicBody2D" parent="." index="0" instance=ExtResource( 1 )]
+
+position = Vector2( -224, 704 )
+input_pickable = false
+collision_layer = 16
+collision_mask = 2
+collision/safe_margin = 0.08
+script = ExtResource( 2 )
+_sections_unfolded = [ "Collision" ]
+E_SPEED = 260
+E_DAMAGE = 10
+E_TIME = 15
+
+[node name="Bullet8" type="KinematicBody2D" parent="." index="1" instance=ExtResource( 1 )]
+
+position = Vector2( -224, 448 )
+input_pickable = false
+collision_layer = 16
+collision_mask = 2
+collision/safe_margin = 0.08
+script = ExtResource( 2 )
+_sections_unfolded = [ "Collision" ]
+E_SPEED = 260
+E_DAMAGE = 10
+E_TIME = 15
+
+[node name="Bullet4" type="KinematicBody2D" parent="." index="2" instance=ExtResource( 1 )]
+
+position = Vector2( -224, 576 )
+input_pickable = false
+collision_layer = 16
+collision_mask = 2
+collision/safe_margin = 0.08
+script = ExtResource( 2 )
+_sections_unfolded = [ "Collision" ]
+E_SPEED = 260
+E_DAMAGE = 10
+E_TIME = 15
+
+[node name="Bullet6" type="KinematicBody2D" parent="." index="3" instance=ExtResource( 1 )]
+
+position = Vector2( -224, 320 )
+input_pickable = false
+collision_layer = 16
+collision_mask = 2
+collision/safe_margin = 0.08
+script = ExtResource( 2 )
+_sections_unfolded = [ "Collision" ]
+E_SPEED = 260
+E_DAMAGE = 10
+E_TIME = 15
+
+[node name="Bullet11" type="KinematicBody2D" parent="." index="4" instance=ExtResource( 1 )]
+
+position = Vector2( -224, 128 )
+input_pickable = false
+collision_layer = 16
+collision_mask = 2
+collision/safe_margin = 0.08
+script = ExtResource( 2 )
+_sections_unfolded = [ "Collision" ]
+E_SPEED = 260
+E_DAMAGE = 10
+E_TIME = 15
+
+[node name="Bullet2" type="KinematicBody2D" parent="." index="5" instance=ExtResource( 1 )]
+
+position = Vector2( -224, 640 )
+input_pickable = false
+collision_layer = 16
+collision_mask = 2
+collision/safe_margin = 0.08
+script = ExtResource( 2 )
+_sections_unfolded = [ "Collision" ]
+E_SPEED = 260
+E_DAMAGE = 10
+E_TIME = 15
+
+[node name="Bullet7" type="KinematicBody2D" parent="." index="6" instance=ExtResource( 1 )]
+
+position = Vector2( -224, 384 )
+input_pickable = false
+collision_layer = 16
+collision_mask = 2
+collision/safe_margin = 0.08
+script = ExtResource( 2 )
+_sections_unfolded = [ "Collision" ]
+E_SPEED = 260
+E_DAMAGE = 10
+E_TIME = 15
+
+[node name="Bullet9" type="KinematicBody2D" parent="." index="7" instance=ExtResource( 1 )]
+
+position = Vector2( -224, 192 )
+input_pickable = false
+collision_layer = 16
+collision_mask = 2
+collision/safe_margin = 0.08
+script = ExtResource( 2 )
+_sections_unfolded = [ "Collision" ]
+E_SPEED = 260
+E_DAMAGE = 10
+E_TIME = 15
+
+[node name="Bullet3" type="KinematicBody2D" parent="." index="8" instance=ExtResource( 1 )]
+
+position = Vector2( -224, 512 )
+input_pickable = false
+collision_layer = 16
+collision_mask = 2
+collision/safe_margin = 0.08
+script = ExtResource( 2 )
+_sections_unfolded = [ "Collision" ]
+E_SPEED = 260
+E_DAMAGE = 10
+E_TIME = 15
+
+[node name="Bullet5" type="KinematicBody2D" parent="." index="9" instance=ExtResource( 1 )]
+
+position = Vector2( -224, 256 )
+input_pickable = false
+collision_layer = 16
+collision_mask = 2
+collision/safe_margin = 0.08
+script = ExtResource( 2 )
+_sections_unfolded = [ "Collision" ]
+E_SPEED = 260
+E_DAMAGE = 10
+E_TIME = 15
+
+[node name="Bullet10" type="KinematicBody2D" parent="." index="10" instance=ExtResource( 1 )]
+
+position = Vector2( -224, 64 )
+input_pickable = false
+collision_layer = 16
+collision_mask = 2
+collision/safe_margin = 0.08
+script = ExtResource( 2 )
+_sections_unfolded = [ "Collision" ]
+E_SPEED = 260
+E_DAMAGE = 10
+E_TIME = 15
+
+

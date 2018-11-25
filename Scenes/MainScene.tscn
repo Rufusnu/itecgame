@@ -9,7 +9,7 @@
 position = Vector2( -17.2489, -1.32684 )
 script = ExtResource( 1 )
 E_START_LEVEL = ExtResource( 2 )
-E_TEST_LEVEL = null
+E_MENU = ExtResource( 3 )
 
 [node name="Menu" parent="." index="0" instance=ExtResource( 3 )]
 
