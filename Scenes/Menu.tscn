@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scripts/Menu.gd" type="Script" id=1]
 [ext_resource path="res://Animations/background_panda.png" type="Texture" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Textures/hud/gear_idle.png" type="Texture" id=5]
 [ext_resource path="res://Textures/hud/gear_active.png" type="Texture" id=6]
 [ext_resource path="res://Scripts/Neeee.gd" type="Script" id=7]
+[ext_resource path="res://Textures/logo/logo.png" type="Texture" id=8]
 
 [sub_resource type="Animation" id=1]
 
@@ -27,7 +28,7 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
 }
 
-[node name="Menu" type="CanvasLayer"]
+[node name="Menu" type="CanvasLayer" index="0"]
 
 layer = 1
 offset = Vector2( 0, 0 )
@@ -153,6 +154,13 @@ lines_skipped = 0
 max_lines_visible = -1
 script = ExtResource( 7 )
 _sections_unfolded = [ "Visibility" ]
+
+[node name="Sprite2" type="Sprite" parent="." index="5"]
+
+position = Vector2( 64, 435 )
+scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 8 )
+_sections_unfolded = [ "Transform", "Z Index" ]
 
 [connection signal="pressed" from="Options" to="Neeee" method="_on_Options_pressed"]
 
