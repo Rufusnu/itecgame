@@ -182,8 +182,12 @@ func _physics_process(delta):
 	
 	# probably more anim stuff
 	if g_is_moon_walking:
+		if !$Smooth.is_playing():
+			$Smooth.play()
 		$Sprite.flip_h = g_facing_right
 	else:
+		if $Smooth.is_playing():
+			$Smooth.stop()
 		$Sprite.flip_h = !g_facing_right
 	
 	# animations

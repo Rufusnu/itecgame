@@ -5,6 +5,9 @@ const C_TIME_TILL_WAVE = 4
 var g_waves = [load("res://Scenes/Arrow.tscn"), load("res://Scenes/Creata.tscn"), load("res://Scenes/DashWaveLeft.tscn"), load("res://Scenes/DashWaveRight.tscn"), load("res://Scenes/GroundLR.tscn"), load("res://Scenes/PlatformLR.tscn"), load("res://Scenes/UpDown.tscn"), load("res://Scenes/XForm.tscn")]
 var g_time_passed = 2
 
+func _ready():
+	$Mega.play()
+
 func _physics_process(delta):
 	
 	g_time_passed = min(g_time_passed + delta, C_TIME_TILL_WAVE)

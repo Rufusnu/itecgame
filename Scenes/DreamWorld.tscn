@@ -5,15 +5,16 @@
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scripts/MovingPlatDream.gd" type="Script" id=4]
 [ext_resource path="res://Textures/terrain/tile_dream02.png" type="Texture" id=5]
-[ext_resource path="res://Scenes/DeathZone.gd" type="Script" id=6]
+[ext_resource path="res://Scripts/DeathZone.gd" type="Script" id=6]
 [ext_resource path="res://Scripts/Wall.gd" type="Script" id=7]
 [ext_resource path="res://Textures/terrain/tile_dream01.png" type="Texture" id=8]
 [ext_resource path="res://Scenes/DialogInteract.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Scenes/Boss.gd" type="Script" id=10]
+[ext_resource path="res://Scripts/Boss.gd" type="Script" id=10]
 [ext_resource path="res://Animations/run_boss.png" type="Texture" id=11]
-[ext_resource path="res://Scenes/BossTrigger.gd" type="Script" id=12]
+[ext_resource path="res://Scripts/BossTrigger.gd" type="Script" id=12]
 [ext_resource path="res://Scenes/LevelChangeInteract.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Scenes/bossroom.tscn" type="PackedScene" id=14]
+
 
 [sub_resource type="RectangleShape2D" id=1]
 
