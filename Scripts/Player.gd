@@ -300,7 +300,7 @@ func dash(speed):
 func take_damage(damage):
 	g_health -= damage
 	emit_signal("health_changed", g_health)
-	if g_health < 0:
+	if g_health <= 0:
 		die()
 	invincible(0.8)
 
