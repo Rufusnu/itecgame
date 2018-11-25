@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/mega.ogg-fe9046b850c435edf22d4af35e074785.oggstr"
+
+[deps]
+
+source_file="res://Music/mega.ogg"
+dest_files=[ "res://.import/mega.ogg-fe9046b850c435edf22d4af35e074785.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

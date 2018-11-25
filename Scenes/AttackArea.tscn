@@ -7,7 +7,7 @@
 custom_solver_bias = 0.0
 extents = Vector2( 20, 32 )
 
-[node name="AttackArea" type="Area2D" index="0"]
+[node name="AttackArea" type="Area2D"]
 
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
@@ -20,7 +20,7 @@ audio_bus_override = false
 audio_bus_name = "Master"
 script = ExtResource( 1 )
 _sections_unfolded = [ "Collision" ]
-E_DAMAGE = 10000
+E_DAMAGE = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
 

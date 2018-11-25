@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scenes/bossroom.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/HUD.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Textures/Tilesets/last_tileset.tres" type="TileSet" id=4]
 [ext_resource path="res://Scenes/BossBrain.gd" type="Script" id=5]
 [ext_resource path="res://Textures/terrain/cloud.png" type="Texture" id=6]
+[ext_resource path="res://Music/mega.wav" type="AudioStream" id=7]
 
 [sub_resource type="CapsuleShape2D" id=1]
 
@@ -13,7 +14,7 @@ custom_solver_bias = 0.0
 radius = 14.0
 height = 34.0
 
-[node name="bossroom" type="Node2D"]
+[node name="bossroom" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 
@@ -105,7 +106,7 @@ percent_visible = true
 
 [node name="Music" type="AudioStreamPlayer2D" parent="." index="6"]
 
-stream = null
+stream = ExtResource( 7 )
 volume_db = 0.0
 pitch_scale = 1.0
 autoplay = true
@@ -113,5 +114,6 @@ max_distance = 2000.0
 attenuation = 1.0
 bus = "Master"
 area_mask = 1
+_sections_unfolded = [ "Material", "Transform" ]
 
 
